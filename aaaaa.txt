@@ -1,0 +1,497 @@
+Mr. Sourav Nath.
+Gmail:-
+User Id: sourav.elvirainfotech@gmail.com
+Password: Sn@gml#221092122530
+Skype:-
+User Id: sourav.elvirainfotech@gmail.com
+Password: Sn@skp#221092122530
+Trello:-
+User Id: sourav.elvirainfotech@gmail.com
+Password: Sn@trl#221092122530
+Attendance System:Time Doctor software:-
+User Id: sourav.elvirainfotech@gmail.com
+Password: Sn@td#221092122530
+
+prasanta da - 9123955728
+
+
+
+
+
+
+
+enable lotttery- checkbox
+lottery number - number
+lottery system
+
+
+
+
+
+
+
+
+
+
+Sourav@1234#Da7
+
+nathsourav32
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+/**
+ * Template Name: Home
+ */
+
+get_header();
+?>
+
+<section class="banner">
+	<?php
+	 $banner_image = get_field('banner_image');
+	 if( !empty(banner_image) ): 
+	?>
+        <img src="<?php echo $banner_image['url']; ?>" class="img-fluid w-100" alt="<?php echo $banner_image['alt']; ?>">
+	<?php endif; ?>
+        <div class="banner-caption-container">
+            <div class="container">
+                <div class="desc">
+                    <div class="banner-txt ">
+                        <h1><?php echo get_field('banner_title'); ?></h1>
+                        <p><?php echo get_field('banner_content'); ?></p>
+                    </div>
+					
+                </div>
+            </div>
+
+        </div>
+        <div class="social">
+           <ul>
+                <li><a href="<?php the_field('tiktok_link', 'option'); ?>" target="_blank" class="icon-tiktok"><i class="fab fa-tiktok fa-fw"></i></a></li>
+                <li><a href="<?php the_field('facebook_link', 'option'); ?>" target="_blank" class="icon-facebook"><i class="fab fa-facebook-f fa-fw"></i></a></li>
+                <li><a href="<?php the_field('pinterest_link', 'option'); ?>" target="_blank" class="icon-pinterest"><i class="fab fa-pinterest-p fa-fw"></i></a></li>
+                <li><a href="<?php the_field('youtube_link', 'option'); ?>" target="_blank" class="icon-youtube"><i class="fab fa-youtube fa-fw"></i></a></li>
+                <li><a href="<?php the_field('instagram_link', 'option'); ?>" target="_blank" class="icon-instagram"><i class="fab fa-instagram fa-fw"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section class="life-book">
+		<?php
+		$book_image = get_field('book_image');
+		if( !empty($book_image) ): 
+		?>
+        <img src="<?php echo $book_image['url']; ?>" class="img-fluid w-100 banner-img" alt="<?php echo $book_image['alt']; ?>">
+		<?php endif; ?>
+        <div class="container life-book-inner">
+            <div class="life-book-info">
+				<?php if( get_field('book_heading') ): ?> 
+                <div class="life-book-head text-center">
+                    <h2><?php the_field( 'book_heading' ); ?></h2>
+                </div>
+				<?php endif; ?>
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="life-book-left text-center">
+                            <h3><?php echo get_field('book_title'); ?></h3>
+                           <?php echo get_field('book_content'); ?>
+                            <a href="<?php echo get_field('book_button_link'); ?>" class="sec-btn"><?php echo get_field('book_button_title'); ?></a>
+                        </div>
+                    </div>
+					<?php if( get_field('book_video') ): ?>
+                    <div class="col-md-6">
+                        <div class="life-book-video">
+                           <?php the_field( 'book_video' ); ?>
+                        </div>
+                    </div>
+					<?php endif; ?>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="courses padding-area">
+        <div class="container">
+            <div class="sec-head text-center">
+                <h2><?php echo get_field('hoo_course_title'); ?></h2>
+                <p><?php echo get_field('hoo_course_intro'); ?></p>
+            </div>
+            <div class="row">
+				<?php
+				     $featured_product = get_field('hoo_course',get_the_ID()); 
+                      foreach($relation_product as $rel)
+                      {
+                        //$img = wp_get_attachment_url( get_post_thumbnail_id($serv->ID));
+                $args = array( 'post_type' => 'product', 'posts_per_page' => 3,'post__in' => wc_get_featured_product_ids(), 'order' => 'ASC');
+                $loop = new WP_Query( $args );
+                while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+                $img = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                $alt = get_post_meta($img, '_wp_attachment_image_alt', true);
+                ?>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="courses-box courses-box1">
+						<img src="<?php echo $img; ?>" class="img-fluid w-100" alt="">
+                        <div class="course-box-info">
+						 <h4><?php the_title(); ?></h4>
+                           <?php the_content(); ?>
+                        </div>
+                        <a href="<?php the_permalink();?>">
+                            <img src="<?php echo get_field('product_arrow');?>" class="img-fluid">
+                        </a>
+                    </div>
+                </div>
+				<?php  endwhile;} wp_reset_query(); ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="go-inside-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="go-inside-sec-inner">
+                        <p><?php echo get_field('inside_content'); ?></p>
+                        <a href="<?php echo get_field('inside_button_link'); ?>" class="sec-btn"><?php echo get_field('inside_button_name'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-want-learn">
+        <div class="container-fluid">
+            <div class="sec-head text-center">
+                <h2><?php echo get_field('learn_title'); ?></h2>
+                <p><?php echo get_field('learn_content'); ?></p>
+            </div>
+            <div class="row">
+				<?php 
+                 $woocCategoryTerms = get_terms('product_cat', array(
+                     'order'        => 'ASC',
+                     'hide_empty'   => false,   
+                     'hierarchical' => true,
+                     'exclude' => array(15,34)
+                 ));
+                 ?>
+				<?php 
+				foreach($woocCategoryTerms as $wooCategoryTerm) :
+                $cat_thumb_id = get_woocommerce_term_meta( $wooCategoryTerm->term_id, 'thumbnail_id', true );
+                $image = wp_get_attachment_url( $cat_thumb_id );
+                ?>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="what-want-learn-box">
+                        <div class="what-want-learn-img">
+                            <img src="<?php echo $image; ?>" class="img-fluid main-img" alt="">
+                            <div class="overlay-btn">
+                             <a href="<?php echo get_term_link($wooCategoryTerm->slug, 'product_cat' ); ?>">
+         <img src="<?php echo get_template_directory_uri(); ?>/images/arrow-btn.png" class="img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <h4><a href="<?php echo get_term_link($wooCategoryTerm->slug, 'product_cat' ); ?>"><?php echo $wooCategoryTerm->name; ?></a> </h4>
+                    </div>
+                </div>
+				<?php endforeach; ?>
+				
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="row newsletter-dektop">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="newsletter-form">
+                        <div class="sec-head">
+							<?php if( get_field('newsletter_title') ): ?> 
+                            <h2><?php the_field('newsletter_title'); ?></h2>
+							<?php endif; ?>
+							<?php if( get_field('newsletter_content') ): ?> 
+                            <p><?php the_field('newsletter_content'); ?></p>
+							<?php endif; ?>
+                        </div>
+						<?php echo do_shortcode('[contact-form-7 id="254" title="Contact form 1"]'); ?>
+<!--                         <form method="post" action="https://savo2.co.uk/?na=s">
+							<input type="hidden" name="nlang" value="">
+                            <div class="form-group">
+                                <input type="text" name="np" class="form-control" placeholder="NAME">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="ne" class="form-control" placeholder="EMAIL">
+                            </div>
+							<button class="btn sec-btn" type="submit">sign up</button>
+                        </form> -->
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-sm-6">
+					<?php
+					 $newsletter_image = get_field('newsletter_image');
+					 if( !empty(newsletter_image) ): 
+					 ?>
+                    <div class="newsletter-img">
+                        <img src="<?php echo $newsletter_image['url']; ?>" class="img-fluid w-100" alt="<?php echo $newsletter_image['alt']; ?>">
+                    </div>
+					<?php endif; ?>
+                </div>
+            </div>
+
+            <div class="newsletter-mobile">
+
+                <div class="newsletter-head">
+					
+                    <div class="sec-head">
+                       <?php if( get_field('newsletter_title') ): ?> 
+                            <h2><?php the_field('newsletter_title'); ?></h2>
+							<?php endif; ?>
+                    </div>
+					<?php
+					 $newsletter_image = get_field('newsletter_image');
+					 if( !empty(newsletter_image) ): 
+					 ?>
+                    <div class="newsletter-img">
+                       <img src="<?php echo $newsletter_image['url']; ?>" class="img-fluid w-100" alt="<?php echo $newsletter_image['alt']; ?>">
+                    </div>
+					<?php endif; ?>
+					
+                </div>
+
+                <div class="newsletter-form">
+                    <div class="sec-head">
+                        <?php if( get_field('newsletter_content') ): ?> 
+                        <p><?php the_field('newsletter_content'); ?></p>
+						<?php endif; ?>
+                    </div>
+					<?php echo do_shortcode('[contact-form-7 id="254" title="Contact form 1"]'); ?>
+<!--                     <form method="post" action="https://savo2.co.uk/?na=s">
+							<input type="hidden" name="nlang" value="">
+                            <div class="form-group">
+                                <input type="text" name="np" class="form-control" placeholder="NAME">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="ne" class="form-control" placeholder="EMAIL">
+                            </div>
+							<button class="btn sec-btn" type="submit">sign up</button>
+                    </form> -->
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-course">
+        <div class="container">
+            <div class="sec-head text-center">
+                <div class="sec-head-img">
+                    <img src="<?php echo get_field('course_image'); ?>" class="img-fluid">
+                </div>
+                <h2><?php echo get_field('course_title'); ?></h2>
+                <p><?php echo get_field('course_content'); ?></p>
+            </div>
+            <div class="row">
+				<?php
+                $args = array( 'post_type' => 'product','product_cat' => 'course', 'posts_per_page' => 6,'order' => 'ASC');
+                $loop = new WP_Query( $args );
+                while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+                $img = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                $alt = get_post_meta($img, '_wp_attachment_image_alt', true);
+                ?>
+                <div class="col-lg-4 col-sm-6">
+                    <div class="popular-course-info" tabIndex="0">
+                        <div class="popular-course-inner">
+                            <div class="popular-course-front">
+                      <img src="<?php echo $img; ?>" class="img-fluid w-100" >
+                                <h3><?php the_title(); ?></h3>
+                            </div>
+                            <div class="popular-course-back">
+								<a href="<?php the_permalink(); ?>"><h3><?php the_title(); ?></h3></a>
+                                <?php the_content(); ?>
+                                <a href="<?php the_permalink(); ?>">Find out more <img src="images/arrow-btn.png" class="img-fluid" alt=""></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<?php endwhile; wp_reset_query(); ?>
+            </div>
+            <a href="<?php echo get_field('course_button_link'); ?>" class="sec-btn"><?php echo get_field('course_button_title'); ?></a>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <div class="portfolio-inner portfolio-left">
+						<?php if( get_field('portfolio_title') ): ?> 
+                        <h3><?php the_field( 'portfolio_title' ); ?></h3>
+						<?php endif; ?>
+						<?php if( get_field('portfolio_content') ): ?>
+                        <?php the_field( 'portfolio_content' ); ?>
+						<?php endif; ?>
+                        <h6><?php echo get_field('portfolio_heading'); ?></h6>
+						<?php
+						$portfolio_image_text = get_field('portfolio_image_text');
+						if( !empty($portfolio_image_text) ): 
+						?>
+                        <div class="portfolio-txt-img">
+                            <img src="<?php echo $portfolio_image_text['url']; ?>" class="img-fluid w-100" alt="<?php echo $portfolio_image_text['alt']; ?>">
+                        </div>
+						<?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 col-sm-6">
+					<?php
+						  $portfolio_image = get_field('portfolio_image');
+						  if( !empty($portfolio_image) ): 
+						  ?>
+                    <div class="portfolio-inner-img">
+                        <img src="<?php echo $portfolio_image['url']; ?>" class="img-fluid w-100" alt="<?php echo $portfolio_image['alt']; ?>">
+                    </div>
+					<?php endif; ?>
+                </div>
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <a href="<?php echo get_field('course_button_link'); ?>" class="sec-btn"><?php echo get_field('course_button_title'); ?></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-shop padding-area">
+        <div class="container">
+            <div class="sec-head text-center">
+                <?php if( get_field('shop_title') ): ?> 
+                <h2><?php the_field( 'shop_title' ); ?></h2>
+				<?php endif; ?>
+				<?php if( get_field('shop_content') ): ?> 
+                 <p><?php the_field( 'shop_content' ); ?></p>
+				<?php endif; ?>
+            </div>
+            <div class="row">
+				<?php
+                $args = array( 'post_type' => 'product', 'posts_per_page' => 3,'order' => 'DESC');
+                $loop = new WP_Query( $args );
+                while ( $loop->have_posts() ) : $loop->the_post(); global $product;
+                $img = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                $alt = get_post_meta($img, '_wp_attachment_image_alt', true);
+                ?>
+                <div class="col-md-4">
+                    <div class="my-shop-box">
+                        <div class="my-shop-img">
+                            <img src="<?php echo $img; ?>" class="img-fluid w-100" alt="<?php echo $alt; ?>">
+                            <div class="my-shop-txt">
+                                <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<?php endwhile; wp_reset_query(); ?>
+                <div class="col-md-12 text-center">
+                    <a href="<?php echo get_field('shop_button_link'); ?>" class="sec-btn"><?php echo get_field('shop_button_name'); ?></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial padding-area">
+        <div class="container">
+            <?php if( get_field('testimonial_heading') ): ?> 
+                <h3><?php the_field( 'testimonial_heading' ); ?></h3>
+				<?php endif; ?>
+            <div class="responsive">
+				<?php if( have_rows('testimonial') ): while( have_rows('testimonial') ) : the_row();
+					  $testimonial_author = get_sub_field('testimonial_author');
+					  $testimonial_content = get_sub_field('testimonial_content');
+					  $testimonial_image = get_sub_field('testimonial_image');
+					  ?>
+                <div class="testi-item">
+                    <div class="test-img">
+                        <img src="<?php echo $testimonial_image['url']; ?>" class="img-fluid w-100" alt="<?php echo $testimonial_image['alt']; ?>">
+                    </div>
+                    <?php echo $testimonial_content; ?>
+                    <h5><?php echo $testimonial_author; ?></h5>
+                </div>
+				<?php endwhile; endif;?>
+            </div>
+            <div class="testi-bottom-img">
+                <img src="<?php echo get_field('testimonial_button_image'); ?>" class="img-fluid">
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-sec padding-area">
+        <div class="container">
+            <div class="sec-head text-center">
+                <?php if( get_field('logo_title') ): ?> 
+                <h2><?php the_field('logo_title'); ?></h2>
+				<?php endif; ?>
+            </div>
+            <div class="featured-sec-inner">
+				<?php if( have_rows('logo') ): while( have_rows('logo') ) : the_row(); 
+				 $logo_image = get_sub_field('logo_image');
+				?>
+                <div class="featured-item">
+                    <img src="<?php echo $logo_image['url']; ?>" class="img-fluid" alt="<?php echo $logo_image['alt']; ?>">
+                </div>
+				 <?php endwhile; endif; ?>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="instagram padding-area">
+        <div class="insta-head">
+            <h5><?php echo get_field('instagram_title'); ?> </h5>
+            <h4>@willowing </h4>
+        </div>
+        <div class="insta-img">
+         <img src="<?php echo get_field('instagram_image_one'); ?> " class="img-fluid w-100" >
+         <img src="<?php echo get_field('instagram_image_two'); ?> " class="img-fluid w-100" >
+			<?php //echo do_shortcode('[insta-gallery id="1"]'); ?>
+        </div>
+    </section>	
+
+
+<?php
+get_footer();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
